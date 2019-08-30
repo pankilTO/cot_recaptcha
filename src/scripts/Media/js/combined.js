@@ -213,14 +213,14 @@ const getSubmissionSections = (form_id, data) => {
             {
               fields: [
                 {
-                  id: 'UUID',
+                  id: 'id',
                   title: 'UUID',
                   type: 'text',
                   className: 'col-xs-12',
                   required: true,
                   disabled: true,
                   htmlAttr: {maxLength: 100},
-                  bindTo: 'UUID'
+                  bindTo: 'id'
                 }
               ]
             }
@@ -229,8 +229,7 @@ const getSubmissionSections = (form_id, data) => {
       ];
       model = new CotModel({
         "config_app_name": "",
-        "da_entity_name": "",
-        "UUID": ""
+        "da_entity_name": ""
       });
 
       registerFormEvents = (data) => {
@@ -312,7 +311,7 @@ const getColumnDefinitions = (formName, filter) => {
         },
         {"data": "config_app_name", "title": "CONFIG APP NAME", "filter": true, "type": "text"},
         {"data": "da_entity_name", "title": "DA ENTITY NAME", "filter": true, "type": "text"},
-        {"data": "UUID", "title": "UUID", "filter": true, "type": "text"}
+        {"data": "id", "title": "UUID", "filter": true, "type": "text"}
       ];
       view = "app_config";
       break;

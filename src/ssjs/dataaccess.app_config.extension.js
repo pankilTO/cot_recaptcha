@@ -14,7 +14,7 @@ function afterQuery(content, request, uriInfo, response) {
 
 function beforeContentParse(content, request, uriInfo, response) {
   try{
-
+/*
     var httpMethod = request.getMethod();
 
     if ( httpMethod == "POST"){
@@ -22,6 +22,7 @@ function beforeContentParse(content, request, uriInfo, response) {
       apiKey.emailLog(captcha_key,"captcha_key" + "=" + captcha_key);
       content.addProperty("UUID", captcha_key);
     }
+ */
   }
   catch(e){
     apiKey.emailLog(e.toString(), "error app_config afterCreate")

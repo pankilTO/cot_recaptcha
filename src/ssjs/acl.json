@@ -1,28 +1,28 @@
 [
   {
     "group": "staff",
-    "resource": "/c3api_config/v2/ConfigService.svc/ConfigSet/cot_recaptcha/**",
+    "resource": "/c3api_config/v2/ConfigService.svc/ConfigSet/cot_recaptcha**",
     "action": "**"
   },
   {
     "group": ["cn=DTS_APP_ADMIN,ou=production,ou=WCM,ou=Groups,o=Toronto"],
     "resource": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/**",
-    "action": ["GET","PATCH","PUT","POST","DELETE"]
+    "action": "**"
   },
   {
-    "group": "anonymous",
-    "resource": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/submissions",
-    "action": "POST"
+    "group": ["cn=DTS_APP_ADMIN,ou=production,ou=WCM,ou=Groups,o=Toronto", "staff"],
+    "resource": "/c3api_data/v2/DataAccess.svc/cot_recaptcha**",
+    "action": "GET"
+  },
+  {
+    "group": ["anonymous","staff"],
+    "resource": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/app_config/ca.toronto.api.dataaccess.odata4.**",
+    "action": ["POST"]
   },
   {
     "group": ["anonymous","staff"],
     "resource": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/Media**",
     "action": "GET"
-  },
-  {
-    "group": ["anonymous","staff"],
-    "resource": "application_root",
-    "action": "TEST"
   },
   {
     "group": ["cn=DTS_APP_ADMIN,ou=production,ou=WCM,ou=Groups,o=Toronto"],

@@ -3,13 +3,26 @@ exports.DOMAIN = "https://was-intra-sit.toronto.ca";
 exports.PUBLIC_DOMAIN = "https://was-inter-sit.toronto.ca";
 exports.C3API_AUTH_USERNAME = "c3api_config";
 exports.C3API_AUTH_PASSWORD = "nAcrAspe3epa";
+exports.C3API_DATA_CONFIGURATION_URL =  "/c3api_data/v2/DataAccess.svc/cot_recaptcha/app_config";
 exports.header = "APIKEY";
 exports.value = "5a2ec1dd-3e30-4c26-b45f-1d829574343d";
+exports.public_whitelist = [
+  "https://was-inter-sit.toronto.ca",
+  "https://was-inter-qa.toronto.ca",
+  "https://secure.toronto.ca",
+  "https://was-intra-sit.toronto.ca",
+  "https://was-intra-qa.toronto.ca",
+  "https://insideto-secure.toronto.ca"
+];
 exports.whitelist = [
   "was-intra-sit.toronto.ca",
   "was-intra-qa.toronto.ca",
   "insideto-secure.toronto.ca"];
-
+exports.config_captcha = {
+  "secret":"6LeN_XIUAAAAAFLiG76A2cHays-MKLELHaktiGDq",
+  "verifyurl":"https://www.google.com/recaptcha/api/siteverify",
+  "requiredScore": 70
+};
 exports.verfiy = function (request) {
   var a = request.getRawBaseUri();
   var base = a.substring(a.indexOf("//") + 2, a.indexOf(".ca/") + 3);
