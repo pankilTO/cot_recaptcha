@@ -184,69 +184,68 @@ const getSubmissionSections = (form_id, data) => {
       };
 
       break;
-    case 'submissions':
+    case 'app_config':
       section = [
         {
           id: "submitter_information",
-          title: "Your Information",
+          title: "Application Recaptcha Configuration ",
           className: 'example-form-section panel-default',
           rows: [
-            {
-              fields: [
-                {
-                  id: 'fullName',
-                  title: 'Full Name',
-                  type: 'text',
-                  className: 'col-xs-12',
-                  required: true,
-                  htmlAttr: {maxLength: 100},
-                  bindTo: 'fullName'
-                }
-              ]
-            },
             {
               fields:
                 [
                   {
-                    id: 'phone',
-                    title: 'Phone Number',
-                    type: 'phone',
+                    id: 'config_app_name',
+                    title: 'Config API App Name',
+                    type: 'text',
                     required: true,
-                    infohelp: 'Ex: 416-555-5555',
-                    validationMessage: 'Phone numbers must be entered in a valid format', //optional, when validationtype is used or type is set to daterangepicker||datetimepicker, this can be specified to override the default error message
-                    options: {preferredCountries: ['ca', 'us']},
-                    htmlAttr: {maxLength: 20},
-                    bindTo: 'phone'
+                    bindTo: 'config_app_name'
                   },
                   {
-                    id: 'email',
-                    title: 'Email',
-                    type: 'email',
-                    required: true,
-                    infohelp: 'Ex: you@me.com',
-                    htmlAttr: {maxLength: 254},
-                    bindTo: 'email'
-                  }
+                  id: 'da_entity_name',
+                  title: 'DataAccess API Entity Name (form name)',
+                  type: 'text',
+                  required: true,
+                  bindTo: 'da_entity_name'
+                }
                 ]
+            },
+            {
+              fields: [
+                {
+                  id: 'UUID',
+                  title: 'UUID',
+                  type: 'text',
+                  className: 'col-xs-12',
+                  required: true,
+                  disabled: true,
+                  htmlAttr: {maxLength: 100},
+                  bindTo: 'UUID'
+                }
+              ]
             }
           ]
         }
       ];
       model = new CotModel({
-        "fullName": "",
-        "phone": "",
-        "email": ""
+        "config_app_name": "",
+        "da_entity_name": "",
+        "UUID": ""
       });
 
       registerFormEvents = (data) => {
         console.log("registerFormEvents: Do something like add in addition form elements, hide elements ect");
         registerOnSaveEvents = (data) => {
           console.log("registerOnSaveEvents: Do something on save like modify the payload before AJAX call.");
-        }};
+        }
+      };
       registerPostSaveEvents = (data) => {
         console.log("registerPostSaveEvents: Do something post save like change the route or display additional date. Note: If registerPostSaveEvents is implemented, you need to manage the state change after");
         // if this method is not implemented, then the framework will simply reload the new data from the server.
-        router.navigate(form_id + '/' + data.id + '/?alert=success&msg=save.done&ts=' + new Date().getTime(), {trigger: true, replace: true});
+        router.navigate(form_id + '/' + data.id + '/?alert=success&msg=save.done&ts=' + new Date().getTime(), {
+          trigger: true,
+          replace: true
+        });
       };
 
       break;
@@ -288,7 +287,7 @@ const getColumnDefinitions = (formName, filter) => {
       ];
       view = 'Media';
       break;
-    case 'submissions':
+    case 'app_config':
       columnDefs = [
         {
           title: "Actions",
@@ -311,11 +310,11 @@ const getColumnDefinitions = (formName, filter) => {
             return moment(data).format(config.dateTimeFormat)
           }
         },
-        {"data": "fullName", "title": "Full Name", "filter": true, "type": "text"},
-        {"data": "email", "title": "Email", "filter": true, "type": "text"},
-        {"data": "phone", "title": "Phone", "filter": true, "type": "text"}
+        {"data": "config_app_name", "title": "CONFIG APP NAME", "filter": true, "type": "text"},
+        {"data": "da_entity_name", "title": "DA ENTITY NAME", "filter": true, "type": "text"},
+        {"data": "UUID", "title": "UUID", "filter": true, "type": "text"}
       ];
-      view = "submissions";
+      view = "app_config";
       break;
     default:
       break;
@@ -337,7 +336,10 @@ const registerEvents = () => {
     e.preventDefault();
     let row = $(this).closest('tr');
     row.addClass('selected');
-    router.navigate(row.attr('data-formName') + '/' + row.attr('data-id') + '/?ts=' + new Date().getTime(), {trigger: true, replace: true});
+    router.navigate(row.attr('data-formName') + '/' + row.attr('data-id') + '/?ts=' + new Date().getTime(), {
+      trigger: true,
+      replace: true
+    });
   });
   $("#maincontent").off('click', '#tabExportCSV').on('click', '#tabExportCSV', function () {
     $(".dt-button.buttons-csv.buttons-html5").click();
@@ -361,8 +363,8 @@ const registerEvents = () => {
   $("#maincontent").off('click', '.tablink').on('click', '.tablink', function () {
 
     let newRoute = $(this).attr('data-id') + '/?ts=' + new Date().getTime() + '&status=' + $(this).attr('data-status') + '&filter=' + $(this).attr('data-filter');
-    console.log("tablink click", newRoute );
-    router.navigate(newRoute , {trigger: true, replace: true});
+    console.log("tablink click", newRoute);
+    router.navigate(newRoute, {trigger: true, replace: true});
   });
   // GLOBAL SEARCH
   $("#maincontent").off('click', '.form-control-clear').on('click', '.form-control-clear', function () {
@@ -402,7 +404,8 @@ const welcomePage = () => {
     $("#viewtitle").html($("<span role='alert'>" + config.dashboard_title + "</span>"));
   }
   let welcome_template = config.dashboard_template;
-  tpl('#dashboard_pane', welcome_template, function () {});
+  tpl('#dashboard_pane', welcome_template, function () {
+  });
 };
 
 /**

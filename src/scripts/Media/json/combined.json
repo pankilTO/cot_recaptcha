@@ -2,22 +2,22 @@
   "title": "cot_recaptcha",
   "dashboard_title":"cot_recaptcha",
   "default_repo": "cot_recaptcha",
-  "default_view": "submissions",
+  "default_view": "dashboard",
   "dateTimeFormat": "YYYY-MM-DD h:mm A",
   "dateFormat": "YYYY-MM-DD",
   "check_session_on_server": true,
   "dashboard_template": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/Media('dashboard.html')/$value",
   "nav_bar_template": "/c3api_data/v2/DataAccess.svc/cot_recaptcha/Media('main_admin.html')/$value",
   "formName": {
-    "submissions": "Submission",
+    "app_config": "Application Configuration",
     "Media": "Media"
   },
   "formHeaderFieldMap": {
-    "submissions": "fullName",
+    "app_config": "da_entity_name",
     "Media": "id"
   },
   "listName": {
-    "submissions": "Submissions",
+    "app_config": "Application Configuration",
     "Media": "Media"
   },
   "httpHost": {
@@ -226,11 +226,11 @@
           "sm-class": "glyphicon glyphicon-pencil forAdmin",
           "menu-item": [
             {
-              "title": "Submission",
+              "title": "Application Configuration",
               "mi-icon-class": "",
-              "mi-id": "mi-new-submission",
+              "mi-id": "mi-new-app_config",
               "mi-class": "btn-createReport forAdmin",
-              "data-id": "submissions"
+              "data-id": "app_config"
             }
           ]
         }
@@ -267,11 +267,11 @@
           "data-filter": ""
         },
         {
-          "title": "All Submissions",
+          "title": "All App Configurations",
           "mi-class": "tablink",
           "mi-icon-class": "",
           "mi-id": "mi-visit-all",
-          "data-id": "submissions",
+          "data-id": "app_config",
           "data-status": "",
           "data-filter": ""
         }
