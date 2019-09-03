@@ -16,7 +16,7 @@ Generic COT RECAPTCHA API endpoint to POST your public submissions to.
 
 
 ## Front End Embedded Implementation
-1. Add variable RECAPTCHA_SITEKEY to your gulpfile preprocessorContext;
+1. Add variable RECAPTCHA_SITEKEY to your gulpfile preprocessorContext:
 `
 let options = {
    pkg,
