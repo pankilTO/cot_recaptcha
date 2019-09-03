@@ -13,7 +13,7 @@
     "Media": "Media"
   },
   "formHeaderFieldMap": {
-    "app_config": "da_entity_name",
+    "app_config": "key_name",
     "Media": "id"
   },
   "listName": {

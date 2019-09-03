@@ -192,6 +192,38 @@ const getSubmissionSections = (form_id, data) => {
           className: 'example-form-section panel-default',
           rows: [
             {
+              fields: [
+                {
+                  id: 'route_type',
+                  title: 'Type',
+                  type: 'radio',
+                  orientation:"horizontal",
+                  required: true,
+                  choices:[{text:"Data Access", value:"da"},{text:"Full Path", value:"full_path"}],
+                  bindTo: 'route_type'
+                },
+                {
+                  id:"key_name",
+                  title:"Key Name",
+                  bindTo:"key_name",
+                  required: true,
+                  type:"text"
+                }
+              ]
+            },
+            {
+              fields: [
+                {
+                  id: 'full_path',
+                  title: 'Full Path',
+                  type: 'text',
+                  className: 'col-xs-12',
+                  required: true,
+                  bindTo: 'full_path'
+                }
+              ]
+            },
+            {
               fields:
                 [
                   {
@@ -229,17 +261,57 @@ const getSubmissionSections = (form_id, data) => {
       ];
       model = new CotModel({
         "config_app_name": "",
-        "da_entity_name": ""
+        "da_entity_name": "",
+        "full_path":"",
+        "route_type":"da",
+        "key_name":""
       });
 
       registerFormEvents = (data) => {
-        console.log("registerFormEvents: Do something like add in addition form elements, hide elements ect");
-        registerOnSaveEvents = (data) => {
-          console.log("registerOnSaveEvents: Do something on save like modify the payload before AJAX call.");
+
+        let full_path_parent = $("#full_pathElement").parent();
+        let da_parent = $("#config_app_nameElement").parent();
+
+        if(data && data.route_type){
+          let route = data.route_type;
+          console.log("route type:" ,route);
+          if(route==="da"){
+            full_path_parent.hide();
+            da_parent.show();
+          }
+          else if(route==="full_path"){
+            full_path_parent.show();
+            da_parent.hide();
+          }
+          else{
+            console.warn("Type not defined");
+          }
         }
+
+        $("#maincontent").off('change', "input[name='route_type']").on('change', "input[name='route_type']", function (){
+         let route = $(this).val();
+
+         if(route==="da"){
+           full_path_parent.hide();
+           da_parent.show();
+         }
+         else if(route==="full_path"){
+           full_path_parent.show();
+           da_parent.hide();
+         }
+         else{
+           console.warn("Type not defined");
+         }
+
+        });
+
+
+      };
+      registerOnSaveEvents = (data) => {
+
       };
       registerPostSaveEvents = (data) => {
-        console.log("registerPostSaveEvents: Do something post save like change the route or display additional date. Note: If registerPostSaveEvents is implemented, you need to manage the state change after");
+        //console.log("registerPostSaveEvents: Do something post save like change the route or display additional date. Note: If registerPostSaveEvents is implemented, you need to manage the state change after");
         // if this method is not implemented, then the framework will simply reload the new data from the server.
         router.navigate(form_id + '/' + data.id + '/?alert=success&msg=save.done&ts=' + new Date().getTime(), {
           trigger: true,
@@ -309,8 +381,7 @@ const getColumnDefinitions = (formName, filter) => {
             return moment(data).format(config.dateTimeFormat)
           }
         },
-        {"data": "config_app_name", "title": "CONFIG APP NAME", "filter": true, "type": "text"},
-        {"data": "da_entity_name", "title": "DA ENTITY NAME", "filter": true, "type": "text"},
+        {"data": "key_name", "title": "CONFIG NAME", "filter": true, "type": "text"},
         {"data": "id", "title": "UUID", "filter": true, "type": "text"}
       ];
       view = "app_config";

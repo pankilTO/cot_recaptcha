@@ -12,7 +12,8 @@ exports.public_whitelist = [
   "https://secure.toronto.ca",
   "https://was-intra-sit.toronto.ca",
   "https://was-intra-qa.toronto.ca",
-  "https://insideto-secure.toronto.ca"
+  "https://insideto-secure.toronto.ca",
+  "https://contrib0.wp.intra.dev-toronto.ca"
 ];
 exports.whitelist = [
   "was-intra-sit.toronto.ca",
@@ -21,7 +22,8 @@ exports.whitelist = [
 exports.config_captcha = {
   "secret":"6LeN_XIUAAAAAFLiG76A2cHays-MKLELHaktiGDq",
   "verifyurl":"https://www.google.com/recaptcha/api/siteverify",
-  "requiredScore": 70
+  "requiredScore": 70,
+  'relay_uri':'https://insideto-secure.toronto.ca/c3api_data/v2/DataAccess.svc/captcha/verify/ca.toronto.api.dataaccess.odata4.captcha'
 };
 exports.verfiy = function (request) {
   var a = request.getRawBaseUri();
