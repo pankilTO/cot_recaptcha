@@ -24,6 +24,7 @@ let options = {
  }`
  
 1. Include the google script at the bottom of the footer section in your app.html
+
 `<script src="https://www.google.com/recaptcha/api.js?render=<!--@echo RECAPTCHA_SITEKEY-->"></script>`
 1. In your cot-form "success" function:
  - implement grecaptcha.ready
