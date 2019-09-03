@@ -40,4 +40,7 @@ let options = {
             /*process your form post as normal, but do your POST tp the appropriate SSJS Simple Extension code.*/
             })
             });`
+ - If you use the cot_recaptcha SSJS Simple Extension as your endpoint, then:
+  - - Create a configuration in the admin interface (see above).
+  - - in your POST to the cot_recaptcha API add the captchaResponseToken header (with the token returned from the greaptcha.execute and the ) and app_config header with the UUID in you application form configuration
  
