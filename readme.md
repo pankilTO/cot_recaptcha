@@ -33,10 +33,10 @@ let options = {
  - implement grecaptcha.ready
  - call grecaptcha.execute
  - execute your success code in the returned promise
- `      success: (event) => {
+ `
+       success: (event) => {
           event.preventDefault(); //this prevents the formvalidation library from auto-submitting if all fields pass validation
           let valuesToSubmit = this.model ? this.model.toJSON() : this.cotForm.getData();
-  
           grecaptcha.ready(function() {
             grecaptcha.execute('/*@echo RECAPTCHA_SITEKEY*/').then(function(token) {
             /*process your form post as normal, but do your POST tp the appropriate SSJS Simple Extension code.*/
