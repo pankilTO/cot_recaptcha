@@ -28,7 +28,7 @@ let options = {
 `<script src="https://www.google.com/recaptcha/api.js?render=<!--@echo RECAPTCHA_SITEKEY-->"></script>`
 1. In your cot-form "success" function:
  - implement grecaptcha.ready
- - call grecaptcha.ready
+ - call grecaptcha.execute
  - execute your success code in the returned promise
  `      success: (event) => {
           event.preventDefault(); //this prevents the formvalidation library from auto-submitting if all fields pass validation
