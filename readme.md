@@ -2,7 +2,9 @@ cot_recaptcha
 ===========
 Generic COT RECAPTCHA API endpoint to POST your public submissions to.
  
-##Quick Start
+## Quick Start
+
+### Application Configuration
 
 1. [Create new app_config](https://was-intra-sit.toronto.ca/webapps/cot_recaptcha)
 - if you POST to DataAccess V2 then choose the field "Type" of Data Access on the form and provide your Config API app name and for form Entity Collection name.
@@ -15,7 +17,7 @@ Generic COT RECAPTCHA API endpoint to POST your public submissions to.
 1. The SSJS will run recaptcha code, if success - SSJS will process your request (POST)
 
 
-## Front End Embedded Implementation
+### Front End Embedded Implementation
 1. Add variable RECAPTCHA_SITEKEY to your gulpfile preprocessorContext:
 `
 let options = {
